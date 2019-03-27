@@ -1,14 +1,29 @@
-#ifndef CANLIB_H_
-#define CANLIB_H_
+/*
+ * can_lib.h
+ *
+ * Created: 27.03.2019 11:45:02
+ *  Author: Ole Hannemann
+ */ 
 
-#include <stdbool.h>
+#include <avr/io.h>
 
-typedef struct CAN_MOB_ID *;
+#ifndef CAN_LIB_H_
+#define CAN_LIB_H_
 
-void can_init();
-void can_rx(CAN_MOB_ID mod_id);
-void can_rx_multi(CAN_MOB_ID mod_ids[]);
-void can_get_msg(CAN_MOB_ID mob_id);
-_Bool _can_check_free(uint8_t, mobnum);
+struct CAN_MOB{
+	
+	uint8_t data_bytes[8];
+	uint16_t mob_id;
+	uint16_t mob_idmask;
+	uint8_t mob_number;
+	
+};
 
-#endif  // CANLIB_H_
+
+uint8_t can_check_free(uint8_t mobnum);
+void can_cfg();
+void can_rx(struct CAN_MOB *to_receive);
+void can_tx(struct CAN_MOB *to_send);
+
+
+#endif /* CAN_LIB_H_ */
