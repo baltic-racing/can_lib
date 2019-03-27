@@ -5,7 +5,7 @@
  *  Author: Ole Hannemann
  */ 
 
-#include "can_lib.h"
+#include "canlib.h"
 #include <avr/io.h>
 
 
