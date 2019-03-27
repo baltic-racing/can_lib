@@ -1,3 +1,2 @@
 # CAN_LIB
-
-CanBus Library
+A simple Libary to send and receive CAN Messages with standard A (11bit long identifier)
