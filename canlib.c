@@ -1,5 +1,5 @@
 /*
- * can_lib.c
+ * canlib.c
  *
  * Created: 27.03.2019 11:47:50
  *  Author: Ole Hannemann
@@ -59,7 +59,7 @@ void can_cfg(){
 	
 	
 }
-void can_rx(struct CAN_MOB *to_receive){
+void can_rx(struct CAN_MOB *to_receive, uint8_t *data){
 	
 	CANPAGE = to_receive->mob_number << MOBNB0;
 	if (can_check_free(to_receive->mob_number)){
@@ -78,16 +78,16 @@ void can_rx(struct CAN_MOB *to_receive){
 	
 	for(uint8_t byte = 0; byte <8; byte++){
 		CANPAGE = (to_receive->mob_number << MOBNB0) | (1 << AINC) | byte;
-		to_receive->data_bytes[byte] = CANMSG;
+		data[byte] = CANMSG;
 	}
 	
 	
 }
-void can_tx(struct CAN_MOB *to_send){
+void can_tx(struct CAN_MOB *to_send, uint8_t *data){
 	
 	for(uint8_t byte = 0; byte <8; byte++){
 		CANPAGE = (to_send->mob_number << MOBNB0) | (1 << AINC) | byte;
-		CANMSG = to_send->data_bytes[byte];
+		CANMSG = data[byte];
 	}
 	
 	CANPAGE = to_send->mob_number << MOBNB0;
