@@ -4,7 +4,7 @@ A simple Libary to send and receive CAN Messages with standard A (11bit long ide
 ## Some explanations
 
 the CAN_MOB Structure contains following data which need to be configured
-	
+```	
 uint16_t mob_id      -> the identifier of the MOB for the bus is stored(11 Bit long identifier for Standard A)
 uint16_t mob_idmask  -> the identifier for the id to receive more MOBS with the specified id
                       for example:
@@ -12,7 +12,7 @@ uint16_t mob_idmask  -> the identifier for the id to receive more MOBS with the 
                                 idmask = 0xC;
                                 so we would receive the following MOBs with the ids 0b1100 to 0b1111
 uint8_t mob_number;  -> The internal mob number in the CAN-Controller (can be from 0-15 on the AT90CAN)
-
+```
 ## Usage example
 
 To use this libary we first need to run can_cfg(); to clear all garbage data in the MOBs
@@ -25,7 +25,8 @@ For Receiving MOBS we pass an array and the CAN_MOB object to the can_rx() funct
 ## Small example code
 the following code would receive a mob with the id 0x101 and only that mob
 and would transmit a mob with id 0x100
-`
+
+```
 uint8_t mob_0_data[8];
 uint8_t mob_1_data[8];
 struct CAN_MOB mob_to_transmit;
@@ -46,4 +47,4 @@ int main(void){
       can_rx(&mob_to_receive, mob_1_data);
 	}
 }
-`
+```
