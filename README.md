@@ -11,7 +11,8 @@ uint16_t mob_idmask  -> the identifier for the id to receive more MOBS with the 
                                 id = 0xF;
                                 idmask = 0xC;
                                 so we would receive the following MOBs with the ids 0b1100 to 0b1111
-uint8_t mob_number;  -> The internal mob number in the CAN-Controller (can be from 0-15 on the AT90CAN)
+uint8_t mob_number;  -> The internal mob number for management in the MCU (needs to be between 0-15)
+		     -> Only one mob should use one specific mob_number on the controller
 ```
 ## Usage example
 
@@ -43,8 +44,8 @@ int main(void){
 	mob_to_receive.mob_number = 1;
 	
    while (1){
-			can_tx(&mob_to_transmit, mob_0_data);
-      can_rx(&mob_to_receive, mob_1_data);
+	can_tx(&mob_to_transmit, mob_0_data);
+     	can_rx(&mob_to_receive, mob_1_data);
 	}
 }
 ```
