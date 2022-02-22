@@ -34,14 +34,14 @@ struct CAN_MOB mob_to_transmit;
 struct CAN_MOB mob_to_receive;
 
 int main(void){
-	can_cfg();
-	mob_to_transmit.mob_id = 0x100;
-	mob_to_transmit.mob_idmask = 0;
-	mob_to_transmit.mob_number = 0;
+  can_cfg();
+  mob_to_transmit.mob_id = 0x100;
+  mob_to_transmit.mob_idmask = 0;
+  mob_to_transmit.mob_number = 0;
   
   mob_to_receive.mob_id = 0x101;
-	mob_to_receive.mob_idmask = 0xfff;
-	mob_to_receive.mob_number = 1;
+  mob_to_receive.mob_idmask = 0xfff;
+  mob_to_receive.mob_number = 1;
 	
    while (1){
 	can_tx(&mob_to_transmit, mob_0_data);
